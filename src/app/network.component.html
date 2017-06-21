@@ -1,0 +1,148 @@
+<div class="col-md-12">
+    <button 
+        type="button" 
+        class="btn btn-success"
+        (click)="activateNetwork()">
+        Activate network
+    </button>
+</div>
+<div class="hidden-md">&nbsp;</div> 
+
+<section class="network col-md-12">
+<!--# input-->
+    <div class="layer input-layer col-md-2">
+        <div class="neuron-control-panel text-center col-md-8 col-md-offset-4">
+            <button 
+                type="button"
+                class="btn btn-primary col-md-5"
+                name="add-neuron"
+                (click)="addNeuron(inputNeurons, false)">
+                <b>+</b>
+            </button>
+            <button 
+                type="button"
+                class="btn btn-primary col-md-5 pull-right"
+                name="remove-neuron" 
+                [attr.disabled]="inputNeurons.length > 1 ? undefined : true" 
+                (click)="removeNeuron(inputNeurons, false)">
+                <b>-</b>
+            </button>
+        </div>     
+
+        <div class="hidden-md">&nbsp;</div> 
+
+        <div class="neuron input-neurons col-md-12" *ngFor = "let neuron of inputNeurons; let i=index">
+            <div class="input-data col-md-6 no-padding">
+                <div class="input-group">
+                    <input type="text" placeholder="INPUT" class="form-control" [(ngModel)]="inputs[i]" /> 
+                </div>
+            </div>
+            <div class="neuron col-md-6">
+                <img src="/app/assets/Logistic.svg.png" width="100%" height="auto">          
+            </div>
+            <div class="hidden-md">&nbsp;</div>
+        </div>
+    </div>
+    <!--#connections-->
+    <svg class="col-md-1">
+    </svg>
+
+<!--#-hidden-->
+    <div class="hidden-layers col-md-6">
+
+        <div class="layer-control-panel text-center col-md-12">
+            <button 
+                type="button"
+                class="btn btn-primary col-md-2 col-md-offset-3"
+                name="add-layer" 
+                [attr.disabled]="hiddenLayers.length < 6 ? undefined : true"                 
+                (click)="addHiddenLayer()">
+                <b>+</b> Layer <b>+</b>
+            </button>
+            <button 
+                type="button"
+                class="btn btn-primary col-md-2 col-md-offset-1"
+                name="remove-layer" 
+                [attr.disabled]="hiddenLayers.length > 1 ? undefined : true" 
+                (click)="removeHiddenLayer()">
+                <b>-</b> Layer <b>-</b>                
+            </button>
+        </div>
+
+        <div class="hidden-md">&nbsp;</div>
+
+        <div class="no-padding layer hidden-layer col-md-2" *ngFor = "let layer of hiddenLayers; let i=index" >
+            <div class="neuron-control-panel text-center">
+                <button 
+                    type="button"
+                    class="btn btn-primary col-md-4 col-md-offset-2"
+                    name="add-neuron" 
+                    (click)="addNeuron(layer, i)">
+                    <b>+</b>
+                </button>
+                <button 
+                    type="button"
+                    class="btn btn-primary col-md-4"
+                    name="remove-neuron" 
+                    [attr.disabled]="layer.length > 1 ? undefined : true" 
+                    (click)="removeNeuron(layer, i)">
+                    <b>-</b>
+                </button>
+            </div>              
+
+            <div class="hidden-md">&nbsp;</div>     
+
+            <div class="no-padding neuron hiden-neurons col-md-12 text-center" *ngFor = "let neuron of layer">
+                <svg width="100%" height="100">
+                    <svg:rect x="25%" y="25%" width="50%" height="50%"/>   
+                </svg>
+            </div>
+            <div class="hidden-md">&nbsp;</div>            
+        </div>         
+        <svg class="col-md-1"  *ngFor = "let layer of hiddenLayers"></svg>  
+    </div>
+
+<!--#output-->
+    <div class="layer output-layer col-md-2">
+        <div class="neuron-control-panel text-center col-md-8">
+            <button 
+                type="button"
+                class="btn btn-primary col-md-5"
+                name="add-neuron" 
+                (click)="addNeuron(outputNeurons, false)">
+                <b>+</b>
+                </button>
+            <button 
+                type="button"
+                class="btn btn-primary col-md-5 pull-right"
+                name="remove-neuron" 
+                [attr.disabled]="outputNeurons.length > 1 ? undefined : true" 
+                (click)="removeNeuron(outputNeurons, false)">
+                <b>-</b>
+            </button>
+        </div>  
+
+        <div class="hidden-md col-md-12">&nbsp;</div>        
+
+        <div class="neuron input-neurons col-md-12" *ngFor = "let neuron of outputNeurons; let i=index">
+            <div class="neuron col-md-6">
+                <img src="/app/assets/Logistic.svg.png" width="100%" height="auto">                       
+            </div>
+
+            <div class="output-data col-md-6 no-padding">
+                {{outputs[i]}}
+            </div>
+            <div class="hidden-md col-md-12">&nbsp;</div>
+        </div>     
+    </div>   
+</section>
+
+<div class="hidden-md">&nbsp;</div>
+<hr class="col-md-12" />
+
+<trainer 
+    [inputNeurons]="inputNeurons"
+    [outputNeurons]="outputNeurons"
+    [network]="network"
+    (rebuildNetwork)="rebuildNetwork()">
+</trainer>

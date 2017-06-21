@@ -1,0 +1,79 @@
+<section class="trainer col-md-12">
+    <div class="control-panel col-md-3">
+        <button name="train" 
+            class="btn btn-default"
+            (click)="trainNetwork()">
+            Train network
+        </button> 
+        <div class="hidden-md">&nbsp;</div>     
+
+        <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1">Learning rate</span>
+            <input type="text" class="form-control" placeholder=".3" [(ngModel)]="learningRate">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1">Iteration</span>
+            <input type="text" class="form-control" placeholder="2000" [(ngModel)]="iterations">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1">Minimum error</span>
+            <input type="text" class="form-control" placeholder=".005" [(ngModel)]="error">
+        </div>
+        <br>
+        <div class="btn-group" dropdown>
+            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                Cost function <span class="caret"></span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li role="menuitem"><a class="dropdown-item" href="#" (click)="setCostFunction(CROSS_ENTROPY)">CROSS ENTROPY</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#" (click)="setCostFunction(MSE)">MSE</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#" (click)="setCostFunction(BINARY)">BINARY</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="pattern col-md-7">
+        <div class="buttons col-md-12 text-center">
+            <button 
+                type="button" 
+                class="btn btn-primary btn-circle by-lg"
+                (click)="addTrainingSet()">
+                <b>+</b>
+            </button>
+            <button 
+                type="button" 
+                class="btn btn-primary btn-circle by-lg"
+                (click)="removeTrainingSet()">
+                <b>-</b>
+            </button>
+        </div>
+        <div class="hidden-md">&nbsp;</div>
+        
+        <div class="pattern col-md-12" *ngFor="let set of trainingSet; let i=index">
+            <div class="hidden-md">&nbsp;</div>
+
+            <div class="exp-input col-md-6">
+                <input 
+                    type="text" 
+                    placeholder="INPUT" 
+                    class="form-control" 
+                    *ngFor="let inp of inputNeurons; let ii=index" 
+                    [(ngModel)]="trainingSet[i].input[ii]"
+                />     
+            </div>
+            <div class="exp-output col-md-6">
+                <input 
+                    type="text" 
+                    placeholder="Expected OUTPUT" 
+                    class="form-control" 
+                    *ngFor="let out of outputNeurons; let ii=index"
+                    [(ngModel)]="trainingSet[i].output[ii]" 
+                />                                            
+            </div>
+
+            <div class="hidden-md">&nbsp;</div>
+        </div>
+    </div>
+</section>

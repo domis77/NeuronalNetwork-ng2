@@ -1,0 +1,61 @@
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.network {
+    border-radius: 17px 17px 17px 17px;
+    border: 1px solid #efefef;
+}
+
+
+
+/*.network {
+    width: 100%;
+    height: auto;
+}
+
+.layer {
+    float: left;
+}
+
+.input-layer {
+    width: 20%;
+    height: auto;
+    background: linear-gradient(to bottom, rgba(179,220,237,0.3) 0%, rgba(188,224,238,0.3) 0%, rgba(41,184,229,0.3) 100%);
+    border-radius: 27px 27px 27px 27px;
+    border: 0px solid #000000;
+}
+
+.hidden-layers {
+    width: 60%;    
+}
+.hidden-layer {
+    width: 20%;
+    height: auto;   
+    background: linear-gradient(to bottom, rgba(252,234,187,1) 0%, rgba(248,181,0,0.03) 100%); 
+    border-radius: 27px 27px 27px 27px;    
+    border: 0px solid #000000;    
+}
+
+.output-layer {
+    width: 20%;
+    height: auto;
+    background: linear-gradient(to bottom, rgba(164,179,87,1) 0%, rgba(91,194,95,0.03) 100%);
+    border-radius: 27px 27px 27px 27px;    
+    border: 0px solid #000000;        
+}
+
+.neuron {
+    display: block;
+    text-align: center;
+    width: 50%;
+    height: auto;
+    margin-left: 40%;
+    margin-bottom: 20%; 
+}*/
+
+/*.neuron-control-panel, .layer-control-panel {
+  display: flex;
+  justify-content: center;
+}*/
